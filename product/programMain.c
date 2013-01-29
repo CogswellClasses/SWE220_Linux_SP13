@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 char *strings[] = {
-"here today, gone tomorrow",
-"a word to the wise is sufficient",
-"no matter where you go, there your are",
-NULL};
+#include "Read me",
+NULL
+};
 
 char *saying () {
 int n;
