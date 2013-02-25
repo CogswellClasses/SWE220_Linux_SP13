@@ -6,7 +6,7 @@ char *strings[] = {
 "here today, gone tomorrow",
 "a word to the wise is sufficient",
 "no matter where you go, there your are",
-0};
+NULL};
 
 char *saying () {
 	int n;
