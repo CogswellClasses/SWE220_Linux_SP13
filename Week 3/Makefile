@@ -8,3 +8,7 @@ hello: $(objects)
 anew:
 	make
 	./hello
+
+clean:
+	rm *.o
+
