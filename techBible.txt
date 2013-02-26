@@ -24,4 +24,7 @@ NOTE: TYPING rm REMOVES THE URL FOREVER!! BE AWARE
 
 Type git remote -v just to check if the correct repository was removed. Next, copy the new URL (refer back to the CLONING A REPOSITORY section if you forget) and then type: git remote add origin "webpage" (replacing "webage" with the URL you just copied).
 
+egrep \<p\> "Edition 4 (1996).html"
+
+is what I typed in the command to make the current output, from there we need to remove quite a bit but not too much
 
