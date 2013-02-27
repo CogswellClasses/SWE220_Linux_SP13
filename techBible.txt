@@ -35,3 +35,10 @@ sed -i 's/ugly/beautiful/g' "girlfriend.html"
 
 NOTE: if you have a "/" in one of the words that you want to replace, you must put a "\" in front of the word so the shell can read it literally as part of the word.
 
+
+DELETING A LINE IN AN HTML FILE
+
+To delete a line of text in an html file, we use the sed command: sed -i '# d' "filename.html" in which the # sign is replaced by the line number you wnt to delete.
+
+NOTE: Note that if we were to delete line 1 of our code, then line 2 becomes the NEW LINE 1. So if you want to delete lines 1 AND 2, you would do the comand for line 1 and then do it AGAIN. IF you do the sed command with line 2, then technically the 3rd line will get deleted.
+
