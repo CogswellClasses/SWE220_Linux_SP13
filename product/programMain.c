@@ -14,7 +14,7 @@ void main (int argc, char *argv[])
 
 	while (!feof(aphorismsFile))
 	{
-		fgets(strings[n], 80, aphorismsFile);
+		fgets(stringArray[n], 80, aphorismsFile);
 		printf("String read: %s\n", stringArray[n]);
 		n++;
 	}
