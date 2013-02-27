@@ -24,7 +24,14 @@ NOTE: TYPING rm REMOVES THE URL FOREVER!! BE AWARE
 
 Type git remote -v just to check if the correct repository was removed. Next, copy the new URL (refer back to the CLONING A REPOSITORY section if you forget) and then type: git remote add origin "webpage" (replacing "webage" with the URL you just copied).
 
-egrep \<p\> "Edition 4 (1996).html"
 
-is what I typed in the command to make the current output, from there we need to remove quite a bit but not too much
+egrep \<p\> "Edition 4 (1996).html" shows all the aphorisms that are in the html file. BUT we still need to remove text from the html file AND replace it.
+
+REPLACING TEXT IN AN HTML FILE
+
+To find and replace text in an html file, we use a sed command. For example, let us say that we want to replace the word "ugly" to "beautiful" in our html file called "girlfriend.html". We would write:
+
+sed -i 's/ugly/beautiful/g' "girlfriend.html"
+
+NOTE: if you have a "/" in one of the words that you want to replace, you must put a "\" in front of the word so the shell can read it literally as part of the word.
 
