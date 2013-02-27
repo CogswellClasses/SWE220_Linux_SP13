@@ -29,16 +29,14 @@ egrep \<p\> "Edition 4 (1996).html" shows all the aphorisms that are in the html
 
 REPLACING TEXT IN AN HTML FILE
 
-To find and replace text in an html file, we use a sed command. For example, let us say that we want to replace the word "ugly" to "beautiful" in our html file called "girlfriend.html". We would write:
+To find and replace text in an html file, we use a sed command. In our project, we wanted to changed <p> and </p> into quotation marks. For <p>, I used the command: sed -i 's/<p>/"/g' "Edition 4 (1996).html".
 
-sed -i 's/ugly/beautiful/g' "girlfriend.html"
-
-NOTE: if you have a "/" in one of the words that you want to replace, you must put a "\" in front of the word so the shell can read it literally as part of the word.
+For </p>, Tanner used: sed -i 's!</p>!"!g' "Edition 4 (1996).html"
 
 
 DELETING A LINE IN AN HTML FILE
 
-To delete a line of text in an html file, we use the sed command: sed -i '# d' "filename.html" in which the # sign is replaced by the line number you wnt to delete.
+To delete a line of text in an html file, I used the sed command: sed -i '1 d' "filename.html" in which the 1 is the line number I wanted to delete. And later, I also deleted line 102.
 
 NOTE: Note that if we were to delete line 1 of our code, then line 2 becomes the NEW LINE 1. So if you want to delete lines 1 AND 2, you would do the comand for line 1 and then do it AGAIN. IF you do the sed command with line 2, then technically the 3rd line will get deleted.
 
