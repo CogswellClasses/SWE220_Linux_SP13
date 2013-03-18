@@ -1,0 +1,42 @@
+CLONING A REPOSITORY
+
+The first step we do is to copy the URL from the webpage to our terminal. If you are using Linux, then highlight the URL where it says "Git Read-Only" and then right click and click "Copy". If you are using Windows, then you can just click the icon that has a clipboard and an arrow pointing to the left. Once it is clicked, it will say "Copied!"
+
+The next step is to go to the terminal and get to the directory where you want to clone the repository to. Then type: git clone and then paste the webpage you just copied. You can paste it by either right clicking and then clicking paste OR by hitting the middle mouse button.
+
+
+COMMITTING FILES
+
+Once you have cloned the repository into your directory, you can edit the files you have cloned. Those edits are visible to you BUT the edited file will not be on github unless you COMMIT your file.
+
+There are three stages that occur during the commit process.
+
+Stage 1: Pick the files that you want to commit.
+Stage 2: You must add each file that you want to commit by typing: git add "filename"
+Stage 3: Type git status. This will give you a review of what you have done so far. You can check on the files you have added to see if you haven't forgotten anything. This command can and should be used anytime just to check your status. After you have checked to see that everything is there, type: git commit. This will commit the files you added to YOUR database. Only YOU will be able to see this. If you want to commit the files to github (the original repository), type: git push. It will ask for your github username and password and it will ask to type in a message for you to make sure that your files were pushed. It could be anything like "Files Pushed. HOORAY!" If everything works out, the changed files should be on the github repository!
+
+
+CHANGING THE WEBPAGE URL
+
+Suppose you wanted to change the URL that you wanted to push your files to. In your repository directory, first type: git remote -v. This will show you all the repositories you have. So you can choose which one you want to change. The way you do that is to type: git remote rm origin. This will remove the URL that you had before.
+
+NOTE: TYPING rm REMOVES THE URL FOREVER!! BE AWARE
+
+Type git remote -v just to check if the correct repository was removed. Next, copy the new URL (refer back to the CLONING A REPOSITORY section if you forget) and then type: git remote add origin "webpage" (replacing "webage" with the URL you just copied).
+
+
+egrep \<p\> "Edition 4 (1996).html" shows all the aphorisms that are in the html file. BUT we still need to remove text from the html file AND replace it.
+
+REPLACING TEXT IN AN HTML FILE
+
+To find and replace text in an html file, we use a sed command. In our project, we wanted to changed <p> and </p> into quotation marks. For <p>, I used the command: sed -i 's/<p>/"/g' "Edition 4 (1996).html".
+
+For </p>, Tanner used: sed -i 's!</p>!"!g' "Edition 4 (1996).html"
+
+
+DELETING A LINE IN AN HTML FILE
+
+To delete a line of text in an html file, I used the sed command: sed -i '1 d' "filename.html" in which the 1 is the line number I wanted to delete. And later, I also deleted line 102.
+
+NOTE: Note that if we were to delete line 1 of our code, then line 2 becomes the NEW LINE 1. So if you want to delete lines 1 AND 2, you would do the comand for line 1 and then do it AGAIN. IF you do the sed command with line 2, then technically the 3rd line will get deleted.
+
