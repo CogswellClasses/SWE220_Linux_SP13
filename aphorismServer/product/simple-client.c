@@ -33,7 +33,7 @@
 #include <resolv.h>
 
 #define PORT       9999
-#define SERVER_ADDR     "127.0.0.1"     /* localhost */
+#define SERVER_ADDR     "hydra"     /* localhost */
 #define MAXBUF          1024
 
 int main()
