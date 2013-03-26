@@ -31,15 +31,31 @@
 #include <errno.h>
 #include <sys/socket.h>
 #include <resolv.h>
+#include <netdb.h>
+#include <netinet/in.h>
 
 #define PORT       9999
-#define SERVER_ADDR     "hydra"     /* localhost */
+#define SERVER_NAME     "hydra.cpc.local"
 #define MAXBUF          1024
 
 int main()
 {   int sockfd;
     struct sockaddr_in dest;
     char buffer[MAXBUF];
+
+    struct hostent *he;
+    struct in_addr **addr_list;
+
+    if ( (he = gethostbyname( SERVER_NAME ) ) == NULL)
+    {
+      fprintf(stderr, "gethostbyname (%s)returned nothing.\n", SERVER_NAME);
+	exit (EXIT_FAILURE);
+    }
+    addr_list = (struct in_addr **) he->h_addr_list;
+    if (addr_list[0] == NULL) {
+      perror ("no results");
+      exit (EXIT_FAILURE);
+    }
 
     /*---Open socket for streaming---*/
     if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0 )
@@ -52,17 +68,13 @@ int main()
     bzero(&dest, sizeof(dest));
     dest.sin_family = AF_INET;
     dest.sin_port = htons(PORT);
-    if ( inet_aton(SERVER_ADDR, &dest.sin_addr.s_addr) == 0 )
-    {
-        perror(SERVER_ADDR);
-        exit(errno);
-    }
-
+    dest.sin_addr = *addr_list[0];
+    
     /*---Connect to server---*/
     if ( connect(sockfd, (struct sockaddr*)&dest, sizeof(dest)) != 0 )
     {
-        perror("Connect ");
-        exit(errno);
+      perror("Connect ");
+      exit(errno);
     }
 
     /*---Get whatever server sends"---*/
