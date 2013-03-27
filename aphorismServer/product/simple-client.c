@@ -35,20 +35,26 @@
 #include <netinet/in.h>
 
 #define PORT       9999
-#define SERVER_NAME     "hydra.cpc.local"
 #define MAXBUF          1024
 
-int main()
+int main(int argc, char *argv[])
 {   int sockfd;
     struct sockaddr_in dest;
     char buffer[MAXBUF];
+    char *server_name;
 
     struct hostent *he;
     struct in_addr **addr_list;
 
-    if ( (he = gethostbyname( SERVER_NAME ) ) == NULL)
+    if (argc != 2) {
+      fprintf (stderr, "need a host name as the only argument\n");
+      exit (EXIT_FAILURE);
+    }
+    server_name = argv[1];
+
+    if ( (he = gethostbyname( server_name ) ) == NULL)
     {
-      fprintf(stderr, "gethostbyname (%s)returned nothing.\n", SERVER_NAME);
+      fprintf(stderr, "gethostbyname (%s)returned nothing.\n", server_name);
 	exit (EXIT_FAILURE);
     }
     addr_list = (struct in_addr **) he->h_addr_list;
@@ -80,7 +86,7 @@ int main()
     /*---Get whatever server sends"---*/
     bzero(buffer, MAXBUF);
     recv(sockfd, buffer, sizeof(buffer), 0);
-    printf("Received: %s", buffer);
+    printf("Received:\n%s\n", buffer);
 
     /*---Clean up---*/
     close(sockfd);
