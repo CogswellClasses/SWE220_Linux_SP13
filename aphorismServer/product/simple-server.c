@@ -34,6 +34,8 @@
 #include <arpa/inet.h>
 #include <errno.h>
 
+#include "saying.h"
+
 #define MY_PORT		9999
 #define MAXBUF		1024
 
@@ -81,7 +83,7 @@ int main(int Count, char *Strings[])
 		clientfd = accept(sockfd, (struct sockaddr*)&client_addr, &addrlen);
 		printf("%s:%d connected\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
 
-		strcpy (buffer, "Hello, world!\n");
+		strcpy (buffer, saying ());
 		send(clientfd, buffer, strlen (buffer), 0);
 
 		/*---Close data connection---*/

@@ -7,8 +7,8 @@ programMain: programMain.c
 
 	gcc -o programMain programMain.c	
 
-simpleServer:	simple-server.c
-	gcc -o simpleServer simple-server.c
+simpleServer:	simple-server.c saying.c saying.h
+	gcc -o simpleServer simple-server.c saying.c
 
 simpleClient:	simple-client.c
 	gcc -o simpleClient simple-client.c
