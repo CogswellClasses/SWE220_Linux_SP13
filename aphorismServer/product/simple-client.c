@@ -39,7 +39,8 @@
 
 int main(int argc, char *argv[])
 {   int sockfd;
-    struct sockaddr_in dest;
+  struct sockaddr_in dest, serverAddr;
+  int serverAddrLen;
     char buffer[MAXBUF];
     char *server_name;
 
@@ -64,7 +65,7 @@ int main(int argc, char *argv[])
     }
 
     /*---Open socket for streaming---*/
-    if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0 )
+    if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 )
     {
         perror("Socket");
         exit(errno);
@@ -76,16 +77,11 @@ int main(int argc, char *argv[])
     dest.sin_port = htons(PORT);
     dest.sin_addr = *addr_list[0];
     
-    /*---Connect to server---*/
-    if ( connect(sockfd, (struct sockaddr*)&dest, sizeof(dest)) != 0 )
-    {
-      perror("Connect ");
-      exit(errno);
-    }
-
     /*---Get whatever server sends"---*/
     bzero(buffer, MAXBUF);
-    recv(sockfd, buffer, sizeof(buffer), 0);
+    sendto(sockfd, buffer, 0, 0, (struct sockaddr *)&dest, sizeof(dest));
+    serverAddrLen = sizeof (serverAddr);
+    recvfrom(sockfd, buffer, sizeof(buffer), 0, (struct sockaddr *) &serverAddr, &serverAddrLen);
     printf("Received:\n%s\n", buffer);
 
     /*---Clean up---*/
