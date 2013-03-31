@@ -8,12 +8,13 @@ char *strings[] = {
   NULL
 };
 
+static int nStrings = sizeof (strings) / sizeof (strings[0]);
+
 char *saying () {
-  int n;
-  for (n = 0; strings[n]; n++);
   int i;
+
   srand (time (NULL));
-  i = rand() % n;
+  i = rand() % nStrings;
   return strings[i];
 }
 
