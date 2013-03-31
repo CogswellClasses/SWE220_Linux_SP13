@@ -18,6 +18,5 @@ char *saying () {
 }
 
 void main (int argc, char *argv[]) {
-  printf (saying ());
-  printf ("\n");
+  printf ("%s\n", saying ());
 }
