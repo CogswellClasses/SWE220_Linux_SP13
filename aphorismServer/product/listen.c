@@ -48,7 +48,7 @@ void main()
     recvfrom (sockfd, buffer, sizeof(buffer), 0,
 	      (struct sockaddr*) &client_addr, &addrlen);
     printf("%s:%d connected\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
-    printf ("received: %s", buffer);
+    printf ("received %d: '%s'\n", (int)strlen(buffer), buffer);
   }
 
   /*---Clean up (should never get here!)---*/
