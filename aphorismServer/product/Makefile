@@ -1,4 +1,4 @@
-all:	programMain simpleServer simpleClient
+all:	programMain simpleServer simpleClient listen talk chatServer
 
 programMain: programMain.c
 	grep '<p>' Edition\ 4\ \(1996\).html | grep -v helvetica | grep -v href | grep -v English>"Read me"
@@ -13,6 +13,16 @@ simpleServer:	simple-server.c saying.c saying.h saying.c
 simpleClient:	simple-client.c
 	gcc -o simpleClient simple-client.c
 
+talk:	talk.c chatPorts.h
+	gcc -o talk talk.c
+
+listen:	listen.c chatPorts.h
+	gcc -o listen listen.c
+
+chatServer:	chatServer.c chatPorts.h
+	gcc -o chatServer chatServer.c
+
 clean:
-	rm simpleClient simpleServer programMain
+	rm simpleClient simpleServer programMain talk listen chatServer
+
 
