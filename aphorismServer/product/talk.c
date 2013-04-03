@@ -62,8 +62,9 @@ int main(int argc, char *argv[])
       int got = getline (&buf, &n, stdin);
       if (got < 0) break;
       buf[got] = 0;
+      got++;
       printf ("send to %s:%d %s\n",  inet_ntoa(dest.sin_addr), ntohs(dest.sin_port), buf);
-      sendto (sockfd, buf, got+1, 0, (struct sockaddr *)&dest, sizeof(dest));
+      sendto (sockfd, buf, got, 0, (struct sockaddr *)&dest, sizeof(dest));
       printf ("sent %d bytes\n", got);
     }
 

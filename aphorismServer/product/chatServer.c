@@ -63,7 +63,7 @@ int main(int Count, char *Strings[])
     other.sin_addr = client_addr.sin_addr;
     printf("sending to %s:%d\n", inet_ntoa(other.sin_addr), ntohs(other.sin_port), got);
 
-    sendto(outgoingSockFD, buffer, strlen (buffer)+1, 0,
+    sendto(outgoingSockFD, buffer, got, 0,
 	   (struct sockaddr*) &other, addrlen);
     
   }

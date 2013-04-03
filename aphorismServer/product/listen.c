@@ -45,10 +45,10 @@ void main()
     struct sockaddr_in client_addr;
     int addrlen=sizeof(client_addr);
 		
-    recvfrom (sockfd, buffer, sizeof(buffer), 0,
+    int got = recvfrom (sockfd, buffer, sizeof(buffer), 0,
 	      (struct sockaddr*) &client_addr, &addrlen);
     printf("%s:%d connected\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
-    printf ("received %d: '%s'\n", (int)strlen(buffer), buffer);
+    printf ("received %d: '%s'\n", got, buffer);
   }
 
   /*---Clean up (should never get here!)---*/
