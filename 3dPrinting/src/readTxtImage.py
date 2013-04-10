@@ -1,10 +1,5 @@
+from sys import stdin, stdout, stderr
 import re
-
-fin = '../data/smiley.txt'
-fout = fin.replace ('.txt', '.stl')
-
-inF = open (fin)
-outF = open (fout, 'w')
 
 def findNumbers (line, n):
     return map (int, re.findall (r'\d+', line)[0:n])
@@ -13,7 +8,7 @@ def facet (p1, p2, p3):
     (p1x, p1y, p1z) = p1
     (p2x, p2y, p2z) = p2
     (p3x, p3y, p3z) = p3
-    outF.write ("""
+    stdout.write ("""
 facet normal
 outer loop
 vertex %f %f %f
@@ -26,21 +21,21 @@ endfacet
        p3x, p3y, p3z,
        ))
 
-(width, height) = findNumbers (inF.readline(), 2)
+(width, height) = findNumbers (stdin.readline(), 2)
 fw = float (width)
 fh = float (height)
 zs = [[0 for y in range (height)]
       for x in range (width)]
-print width, 'x', height
+print >> stderr, width, 'x', height
 
-print 'reading...'
-for line in inF:
+print >> stderr, 'reading...'
+for line in stdin:
     (x, y, z) = findNumbers (line, 3)
     zs[x][height - 1 - y] = z / 256.0
 
-print ('writing...')
+print >> stderr, ('writing...')
 
-outF.write ('solid name\n')
+stdout.write ('solid name\n')
 
 for x in range (1, width):
     for y in range (1, height):
@@ -52,5 +47,5 @@ for x in range (1, width):
         facet (p1, p2, p3)
         facet (p3, p4, p1)
 
-outF.write ('endsolid name\n')
+stdout.write ('endsolid name\n')
 
