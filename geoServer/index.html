@@ -1,2 +1,41 @@
-hiya
+
+<div id="status"></div>
+
+<form id="theForm">
+
+User: <input type="text" name="user"></br>
+
+Latitude: <input type="text" name="latitude"><br>
+
+Longitude: <input type="text" name="longitude"><br>
+
+<input type="submit" value="Submit" formaction="cgi-bin/test.py">
+
+</form>
+
+<button onclick="getLocation()">Locate</button>
+
+<script>
+
+var form=document.getElementById("theForm");
+
+function showPosition(position){
+  theForm.latitude.value = position.coords.latitude;
+  theForm.longitude.value = position.coords.longitude;
+  }
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else {
+    getElementById("status").innerHTML="Geolocation is not supported by this browser.";
+    }
+}
+
+// getLocation();
+
+</script>
  
+
+
