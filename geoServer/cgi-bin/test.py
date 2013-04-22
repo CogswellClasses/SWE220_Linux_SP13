@@ -28,10 +28,12 @@ conn.execute ('''insert into geodata
                   username)
                  values (?, ?, ?, ?)''',
               (now,
-               form["user"].value,
+               form["latitude"].value,
                form["longitude"].value,
-               form["latitude"].value)
+               form["user"].value,
+               )
               )
+
 [[n]] = conn.execute ('select count(*) from geodata')
 
 
