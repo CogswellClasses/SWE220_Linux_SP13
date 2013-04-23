@@ -5,9 +5,9 @@
 
 User: <input type="text" name="user"></br>
 
-Latitude: <input type="text" name="latitude"><br>
+Latitude: <input type="hidden" name="latitude"><br>
 
-Longitude: <input type="text" name="longitude"><br>
+Longitude: <input type="hidden" name="longitude"><br>
 
 <input type="button" value="Locate" onclick="getLocation()">
 <input type="submit" value="Submit" formaction="cgi-bin/test.py">
@@ -19,8 +19,8 @@ Longitude: <input type="text" name="longitude"><br>
 var form=document.getElementById("theForm");
 
 function showPosition(position){
-  theForm.latitude.value = position.coords.latitude;
-  theForm.longitude.value = position.coords.longitude;
+  form.latitude.value = position.coords.latitude;
+  form.longitude.value = position.coords.longitude;
   }
 
 function getLocation() {
