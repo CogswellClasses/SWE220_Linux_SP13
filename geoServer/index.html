@@ -5,12 +5,11 @@
 
 User: <input type="text" name="user"></br>
 
-Latitude: <input type="hidden" name="latitude"><br>
+Latitude: <input type="text" name="latitude"><br>
 
-Longitude: <input type="hidden" name="longitude"><br>
+Longitude: <input type="text" name="longitude"><br>
 
-<input type="button" value="Locate" onclick="getLocation()">
-<input type="submit" value="Submit" formaction="cgi-bin/test.py">
+<input type="submit" value="Submit" formaction="cgi-bin/recordPosition.py">
 </form>
 
 
@@ -31,8 +30,7 @@ function getLocation() {
     getElementById("status").innerHTML="Geolocation is not supported by this browser.";
     }
 }
-
-// getLocation();
+getLocation ();
 
 </script>
  
