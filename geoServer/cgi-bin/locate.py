@@ -13,8 +13,8 @@ conn = sqlite3.connect ('geoServer.db', isolation_level=None)
 print "Content-Type: text/plain"
 print 
 
-for row in conn.execute ('select * from geodata order by username, timepoint'):
-        (timepoint, latitude, longitude, username) = row
+for row in conn.execute ('select username, max(timepoint), latitude, longitude from geodata group by username'):
+        (username, timepoint, latitude, longitude) = row
         print '\t'.join (map (str, [time.strftime  ("%c",
 						    time.localtime (timepoint)),
 				    latitude,
