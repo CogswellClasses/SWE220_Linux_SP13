@@ -15,4 +15,8 @@ print
 
 for row in conn.execute ('select * from geodata order by username, timepoint'):
         (timepoint, latitude, longitude, username) = row
-        print '\t'.join (map (str, [timepoint, latitude, longitude, username]))
+        print '\t'.join (map (str, [time.strftime  ("%c",
+						    time.localtime (timepoint)),
+				    latitude,
+				    longitude,
+				    username]))
